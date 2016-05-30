@@ -1,5 +1,3 @@
-![payu_transparent](https://cloud.githubusercontent.com/assets/5717025/15644977/45d33926-2656-11e6-87b1-0a477e85153c.jpg)
-
 # VirtueMart 3
 
 VirtueMart 3 PayU plugin installation guide

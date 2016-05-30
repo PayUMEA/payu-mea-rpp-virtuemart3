@@ -1,4 +1,4 @@
-# payu_easyplus
+# VirtueMart 3
 
 VirtueMart 3 PayU plugin installation guide
 

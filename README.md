@@ -1,3 +1,7 @@
+<center>
+<img src="https://cloud.githubusercontent.com/assets/5717025/15674295/335fa446-273c-11e6-9db1-76c1b89d153d.jpg" alt="1">
+</center>
+
 # VirtueMart 3
 
 VirtueMart 3 PayU plugin installation guide

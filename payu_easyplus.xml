@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension version="2.5" type="plugin" group="vmpayment">
+    <name>PayU-SA</name>
+    <creationDate>April 7 2016</creationDate>
+    <author>Kenneth Onah</author>
+    <authorUrl>http://www.payu.co.za</authorUrl>
+    <copyright>Copyright (C) 2016 PayU South Africa. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+    <version>1.0.0</version>
+    <description><![CDATA[Secure payment processing by
+        <a href="http://www.payu.co.za" target="_blank">PayU South Africa.</a> ]]>
+    </description>
+
+    <files>
+        <filename plugin="payu_easyplus">payu_easyplus.php</filename>
+        <folder>language</folder>
+        <folder>payu_easyplus</folder>
+    </files>
+    <vmconfig>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/administrator/components/com_virtuemart/fields">
+                <field type="vmtitle" default="VMPAYMENT_PAYU_ACCOUNT_PARAMS"/>
+
+                <field type="text" required="true" name="api_username" size="50" label="VMPAYMENT_PAYU_API_USERNAME" description="VMPAYMENT_PAYU_API_USERNAME_TIP"
+                  message="Parameter API username cannot be empty"/>
+                <field type="text" required="true" name="api_password" size="50" label="VMPAYMENT_PAYU_API_PASSWORD" description="VMPAYMENT_PAYU_API_PASSWORD_TIP"
+                  message="Parameter API password cannot be empty"/>
+                <field type="text" required="true" name="safe_key" size="50" label="VMPAYMENT_PAYU_SAFE_KEY" description="VMPAYMENT_PAYU_SAFE_KEY_TIP"
+                  message="Parameter Merchant Reference cannot be empty"/>
+                <field type="text" required="true" name="merchant_ref" size="50" label="VMPAYMENT_PAYU_MERCHANT_REF" default="" description="VMPAYMENT_PAYU_MERCHANT_REF_TIP"
+                  message="Parameter API username cannot be empty"/>
+
+
+                <field type="list" name="payment_action" label="VMPAYMENT_PAYU_PAYMENT_ACTION"
+                       default="PAYMENT" description="VMPAYMENT_PAYU_PAYMENT_ACTION_TIP">
+                    <option value="PAYMENT">VMPAYMENT_PAYU_ACTION_PAYMENT</option>
+                    <option value="RESERVE">VMPAYMENT_PAYU_ACTION_RESERVE</option>
+                </field>
+
+                <field type="list" name="gateway" label="VMPAYMENT_PAYU_GATEWAY"
+                       default="0" description="VMPAYMENT_PAYU_GATEWAY_TIP">
+                    <option value="0">VMPAYMENT_PAYU_GATEWAY_SANDBOX</option>
+                    <option value="1">VMPAYMENT_PAYU_GATEWAY_LIVE</option>
+                </field>
+
+                <field type="list" name="secure3d" label="VMPAYMENT_PAYU_SECURE3D"
+                       default="1" description="VMPAYMENT_PAYU_SECURE3D_TIP">
+                    <option value="0">COM_VIRTUEMART_NO</option>
+                    <option value="1">COM_VIRTUEMART_YES</option>
+                </field>
+
+                <field type="list" name="redirect_channel" label="VMPAYMENT_PAYU_RPP_LAYOUT"
+                       default="0" description="VMPAYMENT_PAYU_RPP_LAYOUT_TIP">
+                    <option value="responsive">VMPAYMENT_PAYU_LAYOUT_RESPONSIVE</option>
+                    <option value="web">VMPAYMENT_PAYU_LAYOUT_WEB</option>
+                    <option value="mobi">VMPAYMENT_PAYU_LAYOUT_MOBILE</option>
+                </field>
+
+                <field type="list" multiple="true" name="payment_method" label="VMPAYMENT_PAYU_PAYMENT_METHOD"
+                       default="" description="VMPAYMENT_PAYU_PAYMENT_METHOD_TIP">
+                    <option value="CREDITCARD">VMPAYMENT_PAYU_PRODUCT_CREDITCARD</option>
+                    <option value="CREDITCARD_PAYU">VMPAYMENT_PAYU_PRODUCT_CREDITCARD_PAYU</option>
+                    <option value="LOYALTY">VMPAYMENT_PAYU_PRODUCT_LOYALTY</option>
+                    <option value="WALLET">VMPAYMENT_PAYU_PRODUCT_WALLET</option>
+                    <option value="WALLET_PAYU">VMPAYMENT_PAYU_PRODUCT_WALLET_PAYU</option>
+                    <option value="DISCOVERYMILES">VMPAYMENT_PAYU_PRODUCT_DISCOVERYMILES</option>
+                    <option value="GLOBALPAY">VMPAYMENT_PAYU_PRODUCT_GLOBALPAY</option>
+                    <option value="DEBITCARD">VMPAYMENT_PAYU_PRODUCT_DEBITCARD</option>
+                    <option value="EBUCKS">VMPAYMENT_PAYU_PRODUCT_EBUCKS</option>
+                    <option value="PAYPAL">VMPAYMENT_PAYU_PRODUCT_PAYPAL</option>
+                    <option value="EFT">VMPAYMENT_PAYU_PRODUCT_EFT</option>
+                    <option value="EFT_PRO">VMPAYMENT_PAYU_PRODUCT_EFT_PRO</option>
+                    <option value="MASTERPASS">VMPAYMENT_PAYU_PRODUCT_MASTERPASS</option>
+                    <option value="RCS">VMPAYMENT_PAYU_PRODUCT_RCS</option>
+                </field>
+
+                <field type="vmtitle" default="VMPAYMENT_PAYU_ORDER_STATUS_SECTION"
+                       description=""/>
+                <field name="status_pending" type="vmorderstate" scope="com_virtuemart" default="P"
+                       label="VMPAYMENT_PAYU_STATUS_PENDING" description="VMPAYMENT_PAYU_STATUS_PENDING_TIP"/>
+                <field name="status_success" type="vmorderstate" scope="com_virtuemart" default="C"
+                       label="VMPAYMENT_PAYU_STATUS_SUCCESS" description="VMPAYMENT_PAYU_STATUS_SUCCESS_TIP"/>
+                <field name="status_cancelled" type="vmorderstate" scope="com_virtuemart" default="X"
+                       label="VMPAYMENT_PAYU_STATUS_CANCELLED" description="VMPAYMENT_PAYU_STATUS_CANCELLED_TIP"/>
+                <field name="status_denied" type="vmorderstate" scope="com_virtuemart" default="D"
+                       label="VMPAYMENT_PAYU_STATUS_FAILED" description="VMPAYMENT_PAYU_STATUS_FAILED_TIP"/>
+
+                <!-- Currencies -->
+                <!-- ============ -->
+                <field type="vmtitle" default="VMPAYMENT_PAYU_CURRENCIES_SECTION" />
+
+                <field name="payment_currency" type="vmacceptedcurrency" default="" label="VMPAYMENT_PAYU_CURRENCY"
+                       description="VMPAYMENT_PAYU_CURRENCY_DESC"/>
+
+                <field   type="vmtitle" default="VMPAYMENT_PAYU_TEMPLATE_SECTION"
+                       description=""/>
+                <field name="payment_logos" type="imagelist" label="VMPAYMENT_PAYU_LOGOS" multiple="true"
+                           description="VMPAYMENT_PAYU_LOGOS_TIP"
+                           directory="/images/stories/virtuemart/payment"
+                           default="" hide_default="1" hide_none="1"
+                           stripext="0" exclude="^_"/>
+
+                    <field type="text" name="logo_url" size="50" label="VMPAYMENT_PAYU_LOGOURL"
+                           default="" description="VMPAYMENT_PAYU_LOGOURL_TIP"/>
+
+                <field  type="vmtitle" default="VMPAYMENT_PAYU_RESTRICTIONS_SECTION"
+                        description=""/>
+                <field name="countries" multiple="true" type="vmcountries" scope="com_virtuemart" default=""
+                       label="VMPAYMENT_PAYU_COUNTRIES" description="VMPAYMENT_PAYU_COUNTRIES_TIP"/>
+                <field name="min_amount" type="text" label="VMPAYMENT_PAYU_MIN_AMOUNT"
+                       description="VMPAYMENT_PAYU_MIN_AMOUNT_TIP"/>
+                <field name="max_amount" type="text" label="VMPAYMENT_PAYU_MAX_AMOUNT"
+                       description="VMPAYMENT_PAYU_MAX_AMOUNT_TIP"/>
+
+                <field  type="vmtitle" default="VMPAYMENT_PAYU_DISCOUNT_FEE_SECTION"
+                       description=""/>
+                    <field name="cost_per_transaction" type="text" label="VMPAYMENT_PAYU_COST_PER_TRANSACTION"
+                           description="VMPAYMENT_PAYU_COST_PER_TRANSACTION_TIP"/>
+                    <field name="cost_percent_total" type="text" label="VMPAYMENT_PAYU_COST_PERCENT_TOTAL"
+                           description="VMPAYMENT_PAYU_COST_PERCENT_TOTAL_TIP"/>
+                    <field name="tax_id" type="vmtaxes" scope="com_virtuemart" label="VMPAYMENT_PAYU_TAX"
+                           description="VMPAYMENT_PAYU_TAX_TIP"/>
+
+                <field  type="vmtitle" default="VMPAYMENT_PAYU_DEBUG_SECTION"
+                        description=""/>
+                <field name="debug" type="list" default="0" label="VMPAYMENT_PAYU_DEBUG_SECTION" >
+                    <option value="0">COM_VIRTUEMART_NO</option>
+                    <option value="1">COM_VIRTUEMART_YES</option>
+                </field>
+                <field name="log" type="list" default="0" label="VMPAYMENT_PAYU_LOG"
+                       description="VMPAYMENT_PAYU_LOG_TIP">
+                    <option value="0">COM_VIRTUEMART_NO</option>
+                    <option value="1">COM_VIRTUEMART_YES</option>
+                </field>
+            </fieldset>
+        </fields>
+    </vmconfig>
+</extension>

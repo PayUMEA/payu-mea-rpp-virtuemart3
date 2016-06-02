@@ -7,9 +7,7 @@
     <copyright>Copyright (C) 2016 PayU South Africa. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
     <version>1.0.0</version>
-    <description><![CDATA[Secure payment processing by
-        <a href="http://www.payu.co.za" target="_blank">PayU South Africa.</a> ]]>
-    </description>
+    <description><![CDATA[Secure payment processing by <a href="http://www.payu.co.za" target="_blank">PayU South Africa.</a> ]]></description>
 
     <files>
         <filename plugin="payu_easyplus">payu_easyplus.php</filename>

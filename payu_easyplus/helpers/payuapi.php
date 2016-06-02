@@ -9,7 +9,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class PayuEasyPlusApi
 {
-    protected $_method;
+    protected $method;
     protected $cart;
     protected $order;
     protected $context;
@@ -50,7 +50,7 @@ class PayuEasyPlusApi
     protected static $checkoutUrl = '';
 
     function __construct ($method, $plugin) {
-        $this->_method = $method;
+        $this->method = $method;
         $this->plugin = $plugin;
         $session = JFactory::getSession();
         $this->context = $session->getId();
@@ -200,7 +200,7 @@ class PayuEasyPlusApi
     {
         $data = array();
         $data['Api'] = self::getApiVersion();
-        $data['Safekey'] = $this->_method->safe_key;
+        $data['Safekey'] = $this->method->safe_key;
         $data['AdditionalInformation']['payUReference'] = $this->getPayUReference();
 
         $result = self::getSoapSingleton()->getTransaction($data);
@@ -294,8 +294,8 @@ class PayuEasyPlusApi
         return $this->context;
     }
 
-    public function getMethod () {
-        return $this->_method;
+    public function getPaymentMethod() {
+        return $this->method;
     }
 
     public function setCart ($cart) {
@@ -331,7 +331,7 @@ class PayuEasyPlusApi
 
     public function init()
     {
-        $method = $this->_method;
+        $method = $this->method;
         if($method) {
             $this->setSafeKey(trim($method->safe_key));
             $this->setUsername(trim($method->api_username));

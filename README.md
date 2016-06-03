@@ -10,6 +10,7 @@ Before proceeding with the installation of the plugin, you must have installed V
 
 # While it is compatible with PHP 5.3+ please note that PHP 5.3 and PHP 5.4 are no longer officially supported and therefore will not receive security updates and there might be unfixed security vulnerabilities.
 
+# It is thus recommended to upgrade to at least PHP 5.5 (preferably PHP 5.6).
 
 Also ensure you have your PayU API username, password and Safe key handy before proceeding with this installation.
 

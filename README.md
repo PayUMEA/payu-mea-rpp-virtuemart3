@@ -8,6 +8,9 @@ VirtueMart 3 PayU plugin installation guide
 
 Before proceeding with the installation of the plugin, you must have installed VirtueMart shopping cart. This plugin was developed to work with PHP version 5.3+, VirtueMart version 3.x installed on Joomla CMS platform version 3.4.x.
 
+# While it is compatible with PHP 5.3+ please note that PHP 5.3 and PHP 5.4 are no longer officially supported and therefore will not receive security updates and there might be unfixed security vulnerabilities.
+
+
 Also ensure you have your PayU API username, password and Safe key handy before proceeding with this installation.
 
 Beyond this there are no specific requirements for installing and configuring the plugin.

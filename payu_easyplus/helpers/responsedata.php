@@ -14,39 +14,37 @@ if (!class_exists('PayuEasyPlusApi')) {
 
 class PayuResponseData implements \IteratorAggregate
 {
-	private $_payuInterface = null;
-	private $_data = '';
+	private $payuInterface = null;
 
-	public $_successful = false;
-	public $_transaction_state = '';
-	public $_transaction_type = '';
-	public $_result_code = '';
-	public $_result_message = '';
-	public $_payu_reference = '';
-	public $_payment_status = '';
-	public $_amount = '';
-	public $_currency_code = '';
-	public $_transaction_id = '';
+	public $successful = false;
+	public $transaction_state = '';
+	public $transaction_type = '';
+	public $result_code = '';
+	public $result_message = '';
+	public $payu_reference = '';
+	public $payment_status = '';
+	public $amount = '';
+	public $currency_code = '';
+	public $transaction_id = '';
 
     public function setPayuInterface($api)
     {
-        $this->_payuInterface = $api;
-        $this->_data = $api->getPaymentInfo();
+        $this->payuInterface = $api;
     }
 
-    public function load() {
-
-		if (!empty($this->_data)) {
-			$data = $this->_data;
+    public function load() 
+    {
+    	$data = $this->payuInterface->getPaymentInfo();
+		if (!empty($data)) {
 			// payment information
-			$this->_successful = $data['return']['successful'];
-			$this->_transaction_state = $data['return']['transactionState'];
-			$this->_transaction_type = $data['return']['transactionType'];
-			$this->_result_code = $data['return']['resultCode'];
-			$this->_result_message = $data['return']['resultMessage'];
-			$this->_payu_reference = $data['return']['payUReference'];
-			$this->_amount = ($data['return']['paymentMethodsUsed']['amountInCents'] / 100);
-			$this->_currency_code = $data['return']['basket']['currencyCode'];
+			$this->setVar('successful', $data['return']['successful']);
+			$this->setVar('transaction_state', $data['return']['transactionState']);
+			$this->setVar('transaction_type', $data['return']['transactionType']);
+			$this->setVar('result_code', $data['return']['resultCode']);
+			$this->setVar('result_message', $data['return']['resultMessage']);
+			$this->setVar('payu_reference', $data['return']['payUReference']);
+			$this->setVar('amount', ($data['return']['paymentMethodsUsed']['amountInCents'] / 100));
+			$this->setVar('currency_code', $data['return']['basket']['currencyCode']);
 
 			return $this;
 		}

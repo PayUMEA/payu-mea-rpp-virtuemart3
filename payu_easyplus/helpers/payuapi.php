@@ -17,12 +17,12 @@ class PayuEasyPlusApi
     protected static $requestData;
     protected $responseData;
     protected $paymentInfo;
-    protected $currency_code_3;
+    protected $currencyCode;
     protected $plugin;
 
     protected static $ns = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd';
 
-    private static $_soapClient = null;
+    private static $soapClient = null;
 
     // @var string The base sandbox URL for the PayU API endpoint.
     protected static $sandboxUrl = 'https://staging.payu.co.za/service/PayUAPI';
@@ -246,7 +246,7 @@ class PayuEasyPlusApi
     }
     private static function getSoapSingleton()
     {
-        if(is_null(self::$_soapClient))
+        if(is_null(self::$soapClient))
         {
             $header = self::getSoapHeader();
             $soapWsdlUrl = self::getSoapEndpoint().'?wsdl';
@@ -255,46 +255,25 @@ class PayuEasyPlusApi
             $headerbody = new \SoapVar($header, XSD_ANYXML, null, null, null);
             $soapHeader = new \SOAPHeader(self::$ns, 'Security', $headerbody, true);
 
-            self::$_soapClient = new \SoapClient($soapWsdlUrl, array('trace' => 1, 'exception' => 0));
-            self::$_soapClient->__setSoapHeaders($soapHeader);
+            self::$soapClient = new \SoapClient($soapWsdlUrl, array('trace' => 1, 'exception' => 0));
+            self::$soapClient->__setSoapHeaders($soapHeader);
         }
-        return self::$_soapClient;
+        return self::$soapClient;
     }
 
-    public function isPaymentSuccessful()
+    public function debugLog ($message, $title = '', $type = 'message', $echo = false, $doVmDebug = false)
     {
-        return $this->payuTransactionData['return']['successful'];
-    }
-
-    public function getTotalCaptured()
-    {
-        return ($this->payuTransactionData['return']['paymentMethodsUsed']['amountInCents'] / 100);
-    }
-
-    public function getDisplayMessage()
-    {
-        return $this->payuTransactionData['return']['displayMessage'];
-    }
-
-    public function isFraudDetected()
-    {
-        return isset($this->payuTransactionData['return']['fraud']['resultCode']);
-    }
-
-    public function getTransactionState()
-    {
-        return $this->payuTransactionData['return']['transactionState'];
-    }
-
-    public function debugLog ($message, $title = '', $type = 'message', $echo = false, $doVmDebug = false) {
-        $this->plugin->debugLog($message, $title, $type, $doVmDebug);
+        $method = $this->getMethod();
+        if($method()->debug && $method->log) {
+            $this->plugin->debugLog($message, $title, $type);
+        }
     }
 
     public function getContext () {
         return $this->context;
     }
 
-    public function getPaymentMethod() {
+    public function getMethod () {
         return $this->method;
     }
 
@@ -322,11 +301,11 @@ class PayuEasyPlusApi
     }
 
     public function setCurrencyCode ($code) {
-        $this->currency_code_3 = $code;
+        $this->currencyCode = $code;
     }
 
     public function getCurrencyCode () {
-        return $this->currency_code_3;
+        return $this->currencyCode;
     }
 
     public function init()

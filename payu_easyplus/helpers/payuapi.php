@@ -264,7 +264,7 @@ class PayuEasyPlusApi
     public function debugLog ($message, $title = '', $type = 'message', $echo = false, $doVmDebug = false)
     {
         $method = $this->getMethod();
-        if($method()->debug && $method->log) {
+        if($method->debug && $method->log) {
             $this->plugin->debugLog($message, $title, $type);
         }
     }

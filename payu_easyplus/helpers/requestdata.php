@@ -33,7 +33,7 @@ class PayuRequestData
             'Safekey' => trim($method->safe_key),
             'TransactionType' => $method->payment_action,
             'AdditionalInformation' => array(
-                'merchantReference' => $method->merchant_ref,
+                'merchantReference' => vmText::_ ('VMPAYMENT_PAYU_ORDER_NUMBER') . ': ' . $order['details']['BT']->order_number,
                 'supportedPaymentMethods' => implode(',',$method->payment_method),
                 'demoMode' => $method->gateway ? 'false' : 'true',
                 'secure3d' => $method->secure3d ? 'true' : 'false',

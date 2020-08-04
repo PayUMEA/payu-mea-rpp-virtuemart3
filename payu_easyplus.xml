@@ -72,6 +72,7 @@
                     <option value="EFT_PRO">VMPAYMENT_PAYU_PRODUCT_EFT_PRO</option>
                     <option value="MASTERPASS">VMPAYMENT_PAYU_PRODUCT_MASTERPASS</option>
                     <option value="RCS">VMPAYMENT_PAYU_PRODUCT_RCS</option>
+                    <option value="FASTA">VMPAYMENT_PAYU_PRODUCT_FASTA</option>
                 </field>
 
                 <field type="vmtitle" default="VMPAYMENT_PAYU_ORDER_STATUS_SECTION"

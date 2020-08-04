@@ -59,20 +59,21 @@
                 <field type="list" multiple="true" name="payment_method" label="VMPAYMENT_PAYU_PAYMENT_METHOD"
                        default="" description="VMPAYMENT_PAYU_PAYMENT_METHOD_TIP">
                     <option value="CREDITCARD">VMPAYMENT_PAYU_PRODUCT_CREDITCARD</option>
-                    <option value="CREDITCARD_PAYU">VMPAYMENT_PAYU_PRODUCT_CREDITCARD_PAYU</option>
-                    <option value="LOYALTY">VMPAYMENT_PAYU_PRODUCT_LOYALTY</option>
-                    <option value="WALLET">VMPAYMENT_PAYU_PRODUCT_WALLET</option>
-                    <option value="WALLET_PAYU">VMPAYMENT_PAYU_PRODUCT_WALLET_PAYU</option>
                     <option value="DISCOVERYMILES">VMPAYMENT_PAYU_PRODUCT_DISCOVERYMILES</option>
-                    <option value="GLOBALPAY">VMPAYMENT_PAYU_PRODUCT_GLOBALPAY</option>
-                    <option value="DEBITCARD">VMPAYMENT_PAYU_PRODUCT_DEBITCARD</option>
                     <option value="EBUCKS">VMPAYMENT_PAYU_PRODUCT_EBUCKS</option>
-                    <option value="PAYPAL">VMPAYMENT_PAYU_PRODUCT_PAYPAL</option>
-                    <option value="EFT">VMPAYMENT_PAYU_PRODUCT_EFT</option>
                     <option value="EFT_PRO">VMPAYMENT_PAYU_PRODUCT_EFT_PRO</option>
                     <option value="MASTERPASS">VMPAYMENT_PAYU_PRODUCT_MASTERPASS</option>
                     <option value="RCS">VMPAYMENT_PAYU_PRODUCT_RCS</option>
+                    <option value="RCS_PLC">VMPAYMENT_PAYU_PRODUCT_RCS_PLC</option>
                     <option value="FASTA">VMPAYMENT_PAYU_PRODUCT_FASTA</option>
+                    <option value="CREDITCARD_VCO">VMPAYMENT_PAYU_PRODUCT_CREDITCARD_VCO</option>
+                    <option value="MOBICRED">VMPAYMENT_PAYU_PRODUCT_MOBICRED</option>
+                    <option value="MPESA">VMPAYMENT_PAYU_PRODUCT_MPESA</option>
+                    <option value="AIRTEL_MONEY">VMPAYMENT_PAYU_PRODUCT_AIRTEL_MONEY</option>
+                    <option value="EQUITEL">VMPAYMENT_PAYU_PRODUCT_EQUITEL</option>
+                    <option value="MOBILE_BANKING">VMPAYMENT_PAYU_PRODUCT_MOBILE_BANKING</option>
+                    <option value="TIGOPESA">VMPAYMENT_PAYU_PRODUCT_TIGOPESA</option>
+                    <option value="EFT_BANK_TRANSFER">VMPAYMENT_PAYU_PRODUCT_EFT_BANK_TRANSFER</option>
                 </field>
 
                 <field type="vmtitle" default="VMPAYMENT_PAYU_ORDER_STATUS_SECTION"
